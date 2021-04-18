@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mask.liego.dao.MsgInfoMapper">
+    <resultMap id="msgInfo" type="com.mask.liego.entity.MsgInfo"/>
+    <resultMap id="mid" type="Integer"/>
+    <parameterMap id="msgInfo" type="com.mask.liego.entity.MsgInfo"/>
+    <insert id="insertMsgInfo" parameterMap="msgInfo" useGeneratedKeys="true" keyProperty="mid" keyColumn="mid">
+        insert into msgInfo(gid, uid, msg, mtime) values(#{gid}, #{uid}, #{msg}, #{mtime})
+    </insert>
+    <delete id="deleteMsgInfoByMid" parameterType="int">
+        delete from msgInfo where mid=#{1}
+    </delete>
+    <select id="getMsgInfoByMid" parameterType="int" resultMap="msgInfo">
+        select * from msgInfo where mid=#{1}
+    </select>
+    <select id="getMidByGid" resultMap="mid" parameterType="int">
+        select mid from msgInfo where gid=#{1}
+    </select>
+    <select id="getMsgInfosByGid" resultMap="msgInfo" parameterType="int">
+        select * from msgInfo where gid=#{1}
+    </select>
+    <select id="getAllMsgs" resultMap="msgInfo">
+        select * from msgInfo
+    </select>
+</mapper>

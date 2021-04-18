@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mask.liego.dao.GoodsPublishMapper">
+    <resultMap id="goodsPublish" type="com.mask.liego.entity.GoodsPublish"/>
+    <parameterMap id="goodsPublish" type="com.mask.liego.entity.GoodsPublish"/>
+    <insert id="insertGoodsPublish" parameterMap="goodsPublish" useGeneratedKeys="true" keyProperty="pubid" keyColumn="pubid">
+        insert into goodsPublish(gid, pubTime, display) values(#{gid}, #{pubTime}, #{display})
+    </insert>
+    <update id="updateDisplay" parameterMap="goodsPublish">
+        update goodsPublish set display=#{display} where gid=#{gid}
+    </update>
+    <delete id="deleteGoodsPublishByGid" parameterMap="goodsPublish">
+        delete from goodsPublish where gid=#{gid}
+    </delete>
+    <select id="getGoodsPublishByGid" resultMap="goodsPublish" parameterType="integer">
+        select * from goodsPublish where gid=#{1}
+    </select>
+</mapper>

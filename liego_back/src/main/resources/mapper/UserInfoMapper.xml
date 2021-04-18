@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mask.liego.dao.UserInfoMapper">
+    <resultMap id="userInfo" type="com.mask.liego.entity.UserInfo"/>
+    <parameterMap id="userInfo" type="com.mask.liego.entity.UserInfo"/>
+    <insert id="insertUserInfo" parameterMap="userInfo" useGeneratedKeys="true" keyProperty="uid" keyColumn="uid">
+        insert into userInfo(username, sno, phone, balance) values(#{username}, #{sno}, #{phone}, #{balance})
+    </insert>
+    <update id="updateUserInfo" parameterMap="userInfo">
+        update userInfo set balance=#{balance} where username=#{username}
+    </update>
+    <update id="updateBalance" parameterMap="userInfo">
+        update userInfo set balance=balance+#{balance} where uid=#{uid}
+    </update>
+    <delete id="deleteUserInfoByUsername" parameterType="String">
+        delete from userInfo where username=#{1}
+    </delete>
+    <delete id="deleteUserInfoByUid">
+        delete from userInfo where uid=#{1}
+    </delete>
+    <select id="getUserInfoByUid" resultMap="userInfo" parameterType="int">
+        select * from userInfo where uid=#{1}
+    </select>
+    <select id="getUserInfoByUsername" resultMap="userInfo" parameterType="String">
+        select * from userInfo where username=#{1}
+    </select>
+    <select id="getUserInfoBySno" resultMap="userInfo" parameterType="String">
+        select * from userInfo where sno=#{1}
+    </select>
+    <select id="getUserInfoByPhone" resultMap="userInfo" parameterType="String">
+        select * from userInfo where phone=#{1}
+    </select>
+    <select id="getUserInfos" resultType="com.mask.liego.entity.UserInfo">
+        select * from userInfo
+    </select>
+</mapper>

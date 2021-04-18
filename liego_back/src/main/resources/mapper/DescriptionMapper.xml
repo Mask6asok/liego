@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mask.liego.dao.DescriptionMapper">
+    <resultMap id="description" type="com.mask.liego.entity.Description"/>
+    <parameterMap id="description" type="com.mask.liego.entity.Description"/>
+    <insert id="insertDescription" parameterMap="description" keyProperty="descriptionID" useGeneratedKeys="true" keyColumn="descriptionID">
+        insert into description(descrip_text, descrip_img1, descrip_img2, descrip_img3) values(#{descrip_text}, #{descrip_img1}, #{descrip_img2}, #{descrip_img3})
+    </insert>
+    <update id="updateDescripText" parameterMap="description">
+        update description set descrip_text=#{descrip_text} where descriptionID=#{descriptionID}
+    </update>
+    <update id="updateDescripImg1" parameterMap="description">
+        update description set descrip_img1=#{descrip_img1} where descriptionID=#{descriptionID}
+    </update>
+    <update id="updateDescripImg2" parameterMap="description">
+        update description set descrip_img2=#{descrip_img2} where descriptionID=#{descriptionID}
+    </update>
+    <update id="updateDescripImg3" parameterMap="description">
+        update description set descrip_img3=#{descrip_img3} where descriptionID=#{descriptionID}
+    </update>
+    <delete id="deleteDescriptionByDid" parameterType="int">
+        delete from description where descriptionID=#{1}
+    </delete>
+    <select id="getDescriptionByDid" resultMap="description" parameterType="int">
+        select * from description where descriptionID=#{1}
+    </select>
+</mapper>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mask.liego.dao.GoodsInfoMapper">
+    <resultMap id="goodsInfo" type="com.mask.liego.entity.GoodsInfo"/>
+    <parameterMap id="goodsInfo" type="com.mask.liego.entity.GoodsInfo"/>
+    <insert id="insertGoosInfo" parameterMap="goodsInfo" useGeneratedKeys="true" keyProperty="gid" keyColumn="gid">
+        insert into goodsInfo(gname, gtype, uid, price, count, descriptionID) values(#{gname}, #{gtype},
+        #{uid}, #{price}, #{count}, #{descriptionID})
+    </insert>
+    <update id="updateGname" parameterMap="goodsInfo">
+        update goodsInfo set gname=#{gname} where gid=#{gid}
+    </update>
+    <update id="updateType" parameterMap="goodsInfo">
+        update goodsInfo set gtype=#{gtype} where gid=#{gid}
+    </update>
+    <update id="updatePrice" parameterMap="goodsInfo">
+        update goodsInfo set price=#{price} where gid=#{gid}
+    </update>
+    <update id="updateCount" parameterMap="goodsInfo">
+        update goodsInfo set count=#{count} where gid=#{gid}
+    </update>
+    <update id="updateDescriptionID" parameterMap="goodsInfo">
+        update goodsInfo set descriptionID=#{descriptionID} where gid=#{gid}
+    </update>
+    <delete id="deleteGoodsInfoByGid" parameterType="int">
+        delete from goodsInfo where gid=#{1}
+    </delete>
+    <select id="getGoodsInfoByGid" resultMap="goodsInfo">
+        select * from goodsInfo where gid=#{1}
+    </select>
+    <select id="getGoodsInfoByGnameAndUid" resultMap="goodsInfo" parameterType="java.util.Map">
+        select * from goodsInfo where gname=#{param1} and uid=#{param2}
+    </select>
+    <select id="getGoodsInfos" resultMap="goodsInfo">
+        select * from goodsInfo
+    </select>
+    <select id="getGoodsInfosByUid" resultMap="goodsInfo" parameterType="int">
+        select * from goodsInfo where uid=#{1}
+    </select>
+</mapper>

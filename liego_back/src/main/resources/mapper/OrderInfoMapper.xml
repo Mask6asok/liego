@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mask.liego.dao.OrderInfoMapper">
+    <resultMap id="orderInfo" type="com.mask.liego.entity.OrderInfo"/>
+    <parameterMap id="orderInfo" type="com.mask.liego.entity.OrderInfo"/>
+    <insert id="insertOrderInfo" parameterMap="orderInfo" useGeneratedKeys="true" keyProperty="orderid" keyColumn="orderid">
+        insert into orderInfo(gid, sellerID, buyerID, gcount, ocost, time, status) values(#{gid},
+        #{sellerID}, #{buyerID}, #{gcount}, #{ocost}, #{time}, #{status})
+    </insert>
+    <update id="updateTime" parameterMap="orderInfo">
+        update orderInfo set time=#{time} where orderid=#{orderid}
+    </update>
+    <update id="updateStatus" parameterMap="orderInfo">
+        update orderInfo set status=#{status} where orderid=#{orderid}
+    </update>
+    <delete id="deleteOrderInfoByOid" parameterType="int">
+        delete from orderInfo where orderid=#{1}
+    </delete>
+    <select id="getOrderInfoByOid" resultMap="orderInfo" parameterType="int">
+        select * from orderInfo where orderid=#{1}
+    </select>
+    <select id="getOrderInfos" resultMap="orderInfo">
+        select * from orderInfo
+    </select>
+    <select id="getOrderInfosBySeller" resultMap="orderInfo" parameterType="int">
+        select * from orderInfo where sellerID=#{1}
+    </select>
+    <select id="getOrderInfosByBuyer" resultMap="orderInfo" parameterType="int">
+        select * from orderInfo where buyerID=#{1}
+    </select>
+</mapper>
